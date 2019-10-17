@@ -25,6 +25,17 @@ final class EncounterService
     }
 
     /**
+     * Counts unread encounters
+     * 
+     * @param int $userId
+     * @return int
+     */
+    public function countUnread($userId)
+    {
+        return $this->encounterMapper->countUnread($userId);
+    }
+
+    /**
      * Likes a user
      * 
      * @param int $senderId Owner id

@@ -70,6 +70,23 @@ final class EncounterMapper extends AbstractMapper
     }
 
     /**
+     * Counts unread encounters
+     * 
+     * @param int $userId
+     * @return int
+     */
+    public function countUnread($userId)
+    {
+        $db = $this->db->select()
+                       ->count('id')
+                       ->from(self::getTableName())
+                       ->whereEquals('user_id', $userId)
+                       ->andWhereEquals('read', 0);
+        
+        return (int) $db->queryScalar();
+    }
+
+    /**
      * Likes a user
      * 
      * @param int $senderId Owner id
