@@ -80,7 +80,7 @@ final class EncounterMapper extends AbstractMapper
         $db = $this->db->update(self::getTableName(), array('read' => '0'))
                        ->whereEquals('receiver_id', $userId)
 
-        return (bool) $db->exucute(true);
+        return (bool) $db->execute(true);
     }
 
     /**
