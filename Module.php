@@ -3,6 +3,7 @@
 namespace Encounter;
 
 use Krystal\Application\Module\AbstractModule;
+use Encounter\Service\EncounterService;
 
 final class Module extends AbstractModule
 {
@@ -25,6 +26,7 @@ final class Module extends AbstractModule
     public function getServiceProviders()
     {
         return array(
+            'encounterService' => new EncounterService($this->createMapper('\Encounter\Storage\MySQL\EncounterMapper'))
         );
     }
 }
