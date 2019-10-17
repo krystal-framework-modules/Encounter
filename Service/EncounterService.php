@@ -23,4 +23,28 @@ final class EncounterService
     {
         $this->encounterMapper = $encounterMapper;
     }
+
+    /**
+     * Likes a user
+     * 
+     * @param int $senderId Owner id
+     * @param int $receiverId User id to be liked
+     * @return mixed
+     */
+    public function like($senderId, $receiverId)
+    {
+        return $this->encounterMapper->like($senderId, $receiverId);
+    }
+
+    /**
+     * Dislikes a user
+     * 
+     * @param int $senderId Owner id
+     * @param int $receiverId User id to be disliked
+     * @return mixed
+     */
+    public function dislike($senderId, $receiverId)
+    {
+        return $this->encounterMapper->dislike($senderId, $receiverId);
+    }
 }
