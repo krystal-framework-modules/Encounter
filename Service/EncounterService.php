@@ -25,6 +25,17 @@ final class EncounterService
     }
 
     /**
+     * Marks all encounters as read
+     * 
+     * @param int $userId
+     * @return boolean Depending on success
+     */
+    public function markAllAsRead($userId)
+    {
+        return $this->encounterMapper->markAllAsRead($userId);
+    }
+
+    /**
      * Counts unread encounters
      * 
      * @param int $userId

@@ -70,6 +70,20 @@ final class EncounterMapper extends AbstractMapper
     }
 
     /**
+     * Marks all encounters as read
+     * 
+     * @param int $userId
+     * @return boolean Depending on success
+     */
+    public function markAllAsRead($userId)
+    {
+        $db = $this->db->update(self::getTableName(), array('read' => '0'))
+                       ->whereEquals('receiver_id', $userId)
+
+        return (bool) $db->exucute(true);
+    }
+
+    /**
      * Counts unread encounters
      * 
      * @param int $userId
