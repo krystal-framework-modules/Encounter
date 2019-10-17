@@ -60,7 +60,8 @@ final class EncounterMapper extends AbstractMapper
         $data = array(
             'sender_id' => $senderId,
             'receiver_id' => $receiverId,
-            'like' => $like
+            'like' => $like,
+            'read' => 0
         );
 
         $db = $this->db->insert(self::getTableName(), $data);
