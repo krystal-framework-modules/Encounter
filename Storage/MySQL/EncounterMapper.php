@@ -76,7 +76,7 @@ final class EncounterMapper extends AbstractMapper
      * Creates shared encounter query
      * 
      * @param int $userId Current user id
-     * @return array
+     * @return \Krystal\Db\Sql\Db
      */
     private function createEncounterQuery($userId)
     {
