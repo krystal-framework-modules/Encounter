@@ -3,6 +3,7 @@
 namespace Encounter\Service;
 
 use Encounter\Storage\MySQL\EncounterMapper;
+use Krystal\Date\TimeHelper;
 
 final class EncounterService
 {
@@ -77,7 +78,7 @@ final class EncounterService
      */
     public function like($senderId, $receiverId)
     {
-        return $this->encounterMapper->like($senderId, $receiverId);
+        return $this->encounterMapper->like($senderId, $receiverId, TimeHelper::getNow());
     }
 
     /**
@@ -89,6 +90,6 @@ final class EncounterService
      */
     public function dislike($senderId, $receiverId)
     {
-        return $this->encounterMapper->dislike($senderId, $receiverId);
+        return $this->encounterMapper->dislike($senderId, $receiverId, TimeHelper::getNow());
     }
 }

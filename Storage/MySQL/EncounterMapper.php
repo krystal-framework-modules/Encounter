@@ -52,9 +52,10 @@ final class EncounterMapper extends AbstractMapper
      * @param int $receiverId User id to be liked
      * @param int $like Whether liked or not
      * @param int $read Whether item is read
+     * @param string $datetime
      * @return boolean
      */
-    private function insertReaction($senderId, $receiverId, $like, $read)
+    private function insertReaction($senderId, $receiverId, $datetime, $like, $read)
     {
         // Stop, if previously declared
         if ($this->hasReaction($senderId, $receiverId)) {
@@ -64,6 +65,7 @@ final class EncounterMapper extends AbstractMapper
         $data = array(
             'sender_id' => $senderId,
             'receiver_id' => $receiverId,
+            'datetime' => $datetime,
             'like' => $like,
             'read' => $read
         );
@@ -175,11 +177,12 @@ final class EncounterMapper extends AbstractMapper
      * 
      * @param int $senderId Owner id
      * @param int $receiverId User id to be liked
+     * @param string $datetime
      * @return mixed
      */
-    public function like($senderId, $receiverId)
+    public function like($senderId, $receiverId, $datetime)
     {
-        return $this->insertReaction($senderId, $receiverId, 1, 0);
+        return $this->insertReaction($senderId, $receiverId, $datetime, 1, 0);
     }
 
     /**
@@ -187,10 +190,11 @@ final class EncounterMapper extends AbstractMapper
      * 
      * @param int $senderId Owner id
      * @param int $receiverId User id to be disliked
+     * @param string $datetime
      * @return mixed
      */
-    public function dislike($senderId, $receiverId)
+    public function dislike($senderId, $receiverId, $datetime)
     {
-        return $this->insertReaction($senderId, $receiverId, 0, 1);
+        return $this->insertReaction($senderId, $receiverId, $datetime, 0, 1);
     }
 }
