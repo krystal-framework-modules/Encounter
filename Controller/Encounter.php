@@ -28,9 +28,17 @@ final class Encounter extends AbstractSiteController
      */
     public function myLikesAction()
     {
-        return $this->view->render('profile/likes', array(
-            'users' => $this->getModuleService('encounterService')->findMyLikes($this->getAuthService()->getId())
+        $encSrv = $this->getModuleService('encounterService');
+        $id = $this->getAuthService()->getId();
+
+        $output = $this->view->render('profile/likes', array(
+            'users' => $encSrv->findMyLikes($id)
         ));
+
+        // Mark all as read
+        $encSrv->markAllAsRead($id);
+
+        return $output;
     }
 
     /**
