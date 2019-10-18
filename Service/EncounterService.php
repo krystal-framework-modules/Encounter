@@ -26,6 +26,28 @@ final class EncounterService
     }
 
     /**
+     * Find liked users
+     * 
+     * @param int $userId Current user id
+     * @return array
+     */
+    public function findMyLikes($userId)
+    {
+        return $this->encounterMapper->findMyLikes($userId);
+    }
+
+    /**
+     * Find users that like me
+     * 
+     * @param int $userId Current user id
+     * @return array
+     */
+    public function findTheirLikes($userId)
+    {
+        return $this->encounterMapper->findTheirLikes($userId);
+    }
+
+    /**
      * Finds a single encounter
      * 
      * @param int $userId Current user id

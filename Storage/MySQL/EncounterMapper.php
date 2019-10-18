@@ -113,6 +113,61 @@ final class EncounterMapper extends AbstractMapper
     }
 
     /**
+     * Shared method to find out likes
+     * 
+     * @param int $userId Current user id
+     * @param string $relColumn Relational column
+     * @param string $constColumn Constraint column
+     * @return array
+     */
+    private function likeQuery($userId, $relColumn, $constColumn)
+    {
+        // Columns to be selected
+        $columns = array(
+            UserMapper::column('id'),
+            UserMapper::column('name'),
+            UserMapper::column('birthday'),
+            UserMapper::column('avatar'),
+            self::column('datetime')
+        );
+
+        $db = $this->db->select($columns)
+                       ->from(self::getTableName())
+                       // User relation
+                       ->leftJoin(UserMapper::getTableName(), array(
+                            UserMapper::column('id') => self::getRawColumn($relColumn)
+                       ))
+                       ->whereEquals(self::column($constColumn), $userId)
+                       ->andWhereEquals(self::column('like'), 1)
+                       ->orderBy('id')
+                       ->desc();
+
+        return $db->queryAll();
+    }
+    
+    /**
+     * Find liked users
+     * 
+     * @param int $userId Current user id
+     * @return array
+     */
+    public function findMyLikes($userId)
+    {
+        return $this->likeQuery($userId, 'receiver_id', 'sender_id');
+    }
+
+    /**
+     * Find users that like me
+     * 
+     * @param int $userId Current user id
+     * @return array
+     */
+    public function findTheirLikes($userId)
+    {
+        return $this->likeQuery($userId, 'sender_id', 'receiver_id');
+    }
+
+    /**
      * Finds a single encounter
      * 
      * @param int $userId Current user id
