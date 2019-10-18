@@ -14,7 +14,7 @@ final class EncounterMapper extends AbstractMapper
      */
     public static function getTableName()
     {
-        return self::getWithPrefix('users_ecounter');
+        return self::getWithPrefix('users_encounter');
     }
 
     /**

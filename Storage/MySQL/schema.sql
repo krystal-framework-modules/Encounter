@@ -1,5 +1,5 @@
 
-CREATE TABLE `users_ecounter` (
+CREATE TABLE `users_encounter` (
     `id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `sender_id` INT NOT NULL,
     `receiver_id` INT NOT NULL,
