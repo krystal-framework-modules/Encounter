@@ -22,6 +22,30 @@ final class Encounter extends AbstractSiteController
     }
 
     /**
+     * Render users that current user liked
+     * 
+     * @return string
+     */
+    public function myLikesAction()
+    {
+        return $this->view->render('profile/likes', array(
+            'users' => $this->getModuleService('encounterService')->findMyLikes($this->getAuthService()->getId())
+        ));
+    }
+
+    /**
+     * Render users that liked current user
+     * 
+     * @return string
+     */
+    public function theirLikesAction()
+    {
+        return $this->view->render('profile/likes', array(
+            'users' => $this->getModuleService('encounterService')->findTheirLikes($this->getAuthService()->getId())
+        ));
+    }
+
+    /**
      * Likes a user
      * 
      * @param int $id Id of user to be liked

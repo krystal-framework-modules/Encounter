@@ -25,7 +25,15 @@ final class Module extends AbstractModule
 
             '/profile/encounter/dislike/(:var)' => array(
                 'controller' => 'Encounter@dislikeAction'
-            )
+            ),
+            
+            '/profile/encounter/my-likes' => array(
+                'controller' => 'Encounter@myLikesAction'
+            ),
+
+            '/profile/encounter/their-likes' => array(
+                'controller' => 'Encounter@theirLikesAction'
+            ),
         );
     }
 
