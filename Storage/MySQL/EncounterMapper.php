@@ -104,7 +104,7 @@ final class EncounterMapper extends AbstractMapper
         $db = $this->db->select($columns)
                        ->from(UserMapper::getTableName())
                        ->whereNotIn('id', new RawSqlFragment($subQuery($userId))) // Discard already reacted ids
-                       ->andWhereEquals('id', $userId); // Discard current user as well
+                       ->andWhereNotEquals('id', $userId); // Discard current user as well
 
         // Done building shared query
         return $db;
