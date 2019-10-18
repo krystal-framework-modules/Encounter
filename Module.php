@@ -15,6 +15,17 @@ final class Module extends AbstractModule
     public function getRoutes()
     {
         return array(
+            '/profile/encounter' => array(
+                'controller' => 'Encounter@indexAction'
+            ),
+
+            '/profile/encounter/like/(:var)' => array(
+                'controller' => 'Encounter@likeAction'
+            ),
+
+            '/profile/encounter/dislike/(:var)' => array(
+                'controller' => 'Encounter@dislikeAction'
+            )
         );
     }
 
