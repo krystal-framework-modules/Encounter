@@ -128,6 +128,7 @@ final class EncounterMapper extends AbstractMapper
             UserMapper::column('name'),
             UserMapper::column('birthday'),
             UserMapper::column('avatar'),
+            self::column('read'),
             self::column('datetime')
         );
 
