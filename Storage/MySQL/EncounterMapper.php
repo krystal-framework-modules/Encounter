@@ -51,9 +51,10 @@ final class EncounterMapper extends AbstractMapper
      * @param int $senderId Owner id
      * @param int $receiverId User id to be liked
      * @param int $like Whether liked or not
+     * @param int $read Whether item is read
      * @return boolean
      */
-    private function insertReaction($senderId, $receiverId, $like)
+    private function insertReaction($senderId, $receiverId, $like, $read)
     {
         // Stop, if previously declared
         if ($this->hasReaction($senderId, $receiverId)) {
@@ -64,7 +65,7 @@ final class EncounterMapper extends AbstractMapper
             'sender_id' => $senderId,
             'receiver_id' => $receiverId,
             'like' => $like,
-            'read' => 0
+            'read' => $read
         );
 
         $db = $this->db->insert(self::getTableName(), $data);
@@ -178,7 +179,7 @@ final class EncounterMapper extends AbstractMapper
      */
     public function like($senderId, $receiverId)
     {
-        return $this->insertReaction($senderId, $receiverId, 1);
+        return $this->insertReaction($senderId, $receiverId, 1, 0);
     }
 
     /**
@@ -190,6 +191,6 @@ final class EncounterMapper extends AbstractMapper
      */
     public function dislike($senderId, $receiverId)
     {
-        return $this->insertReaction($senderId, $receiverId, 0);
+        return $this->insertReaction($senderId, $receiverId, 0, 1);
     }
 }
