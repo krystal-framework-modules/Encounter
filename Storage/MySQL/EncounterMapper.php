@@ -222,7 +222,7 @@ final class EncounterMapper extends AbstractMapper
         $db = $this->db->select()
                        ->count('id')
                        ->from(self::getTableName())
-                       ->whereEquals('user_id', $userId)
+                       ->whereEquals('sender_id', $userId)
                        ->andWhereEquals('read', 0);
         
         return (int) $db->queryScalar();
