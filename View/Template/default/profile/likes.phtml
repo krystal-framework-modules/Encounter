@@ -1,0 +1,19 @@
+<?php if (!empty($users)): ?>
+
+<section class="encounter mb-5">
+    <div class="row">
+        <?php foreach ($users as $user): ?>
+        <div class="col-3">
+            <a href="<?= $this->url('User:Profile@indexAction', array('id' => $user['id'])); ?>"><img class="img-fluid" src="<?= $user['avatar']; ?>"></a>
+
+            <p><small><?= $user['name']; ?>, <?= $user['datetime']; ?></small></p>
+        </div>
+        <?php endforeach; ?>
+    </div>
+</section>
+
+<?php else: ?>
+
+<p><?php $this->show('No matches at the time'); ?></p>
+
+<?php endif; ?>
