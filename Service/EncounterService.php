@@ -25,6 +25,28 @@ final class EncounterService
     }
 
     /**
+     * Finds a single encounter
+     * 
+     * @param int $userId Current user id
+     * @return array
+     */
+    public function findEncounter($userId)
+    {
+        return $this->encounterMapper->findEncounter($userId);
+    }
+
+    /**
+     * Finds all encounters
+     * 
+     * @param int $userId Current user id
+     * @return array
+     */
+    public function findEncounters($userId)
+    {
+        return $this->encounterMapper->findEncounters($userId);
+    }
+
+    /**
      * Marks all encounters as read
      * 
      * @param int $userId
